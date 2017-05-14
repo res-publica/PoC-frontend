@@ -15,7 +15,7 @@ class App extends Component {
 	}
 	
 	reloadData() {
-		fetch("http://localhost:3000/quotes")
+		fetch("https://respublica.herokuapp.com/quotes")
 		.then((res) => res.json())
 		.then((json) => {
 			console.log(json)
@@ -33,7 +33,7 @@ class App extends Component {
 			cache: 'default'
 		};
 		
-		const request = new Request('http://localhost:3000/quotes/complete/' + quoteId + "/" + category);
+		const request = new Request('https://respublica.herokuapp.com/quotes/complete/' + quoteId + "/" + category);
 		fetch(request, init).then((data) => data.json()).then((json) => {
 			this.setState({
 				quotes: json
@@ -99,7 +99,7 @@ class AddQuote extends Component {
 	createQuote() {
 		fetch('https://api.whatdoestrumpthink.com/api/v1/quotes/random').then((quote) => quote.json()).then((json) => {
 			
-			const request = new Request("http://localhost:3000/quotes/", {
+			const request = new Request("https://respublica.herokuapp.com/quotes/", {
 			  method: 'POST',
 			  headers: {
 			    'Accept': 'application/json',
@@ -107,7 +107,7 @@ class AddQuote extends Component {
 			    },
 			  body: JSON.stringify({
 				message: json.message,
-			    category: false,
+			    category: 'none',
 			    }),
 			})
 		
